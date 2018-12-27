@@ -1,0 +1,40 @@
+{
+    "name": "everycheck/test-api-rest-bundle",
+    "type": "symfony-bundle",
+    "description": "Allows you to easily test a rest api",
+    "keywords": [
+        "test",
+        "api",
+        "rest"
+    ],
+    "homepage": "https://bitbucket.org/everycheck/test-api-rest-bundle",
+    "license": "MIT",
+    "require": {
+        "php": "^7.1",
+        "ext-mysql":"*",
+        "symfony/dependency-injection": "^3.3 || ^4.0",
+        "symfony/framework-bundle": "^3.0 || ^4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0",
+        "symfony/phpunit-bridge": "^3.0",
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "fzaninotto/faker": "^1.6",
+        "nelmio/alice": "^3.0@beta",
+        "canadadry/php-matcher": "dev-master#6cd325059229ca17970c948a2af8a021d5668177"
+
+    },
+    "autoload": {
+        "psr-4": {
+            "EveryCheck\\TestApiRestBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EveryCheck\\TestApiRestBundle\\Tests\\": "Tests"
+        }
+    }
+}
