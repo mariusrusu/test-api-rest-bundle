@@ -1,5 +1,5 @@
 <?php
-namespace TestBundle\Service;
+namespace EveryCheck\TestApiRestBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Psr7\Stream;
@@ -7,7 +7,7 @@ use League\Flysystem\Adapter\Polyfill\NotSupportingVisibilityTrait;
 use League\Flysystem\Adapter\Polyfill\StreamedCopyTrait;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Config;
-use TestBundle\Entity\File;
+use EveryCheck\TestApiRestBundle\Entity\File;
 
 class PdoFlySystem implements AdapterInterface
 {
