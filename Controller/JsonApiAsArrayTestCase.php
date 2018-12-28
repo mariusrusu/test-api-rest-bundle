@@ -70,8 +70,6 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
             }
             $jsonContent = static::$kernel->getContainer()->get('jms_serializer')->serialize($entities,'json');
 
-            $jsonFileComparator = new JsonFileComparator(new SimpleFactory);
-
             $calledClass = get_called_class();
             $calledClassFolder = dirname((new \ReflectionClass($calledClass))->getFileName());
 
@@ -83,7 +81,7 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
 
             try
             {
-                $jsonFileComparator->compare();
+                $this->assertTrue($jsonFileComparator->compare());
             }
             catch (\Exception $e) 
             {

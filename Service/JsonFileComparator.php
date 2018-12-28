@@ -61,6 +61,7 @@ class JsonFileComparator
     public function compare()
     {
         $this->matchJsonAsArray($this->left,$this->right,$this->context);
+        return true;
     }
 
     protected function loadJSONFromString($string, $src='string')
