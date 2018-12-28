@@ -5,7 +5,7 @@
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="pdo_flysystem_service" class="TestBundle\Service\PdoFlySystem">
+        <service id="pdo_flysystem_service" class="EveryCheck\TestApiRestBundle\Service\PdoFlySystem">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
     </services>
