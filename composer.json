@@ -9,7 +9,7 @@
     ],
     "homepage": "https://bitbucket.org/everycheck/test-api-rest-bundle",
     "license": "MIT",
-    "require-dev": {
+    "require": {
         "phpunit/phpunit": "^6.0",
         "symfony/phpunit-bridge": "^3.0",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
