@@ -136,15 +136,22 @@ class PrepareDatabaseForTestCommand extends ContainerAwareCommand
     }
 
     function callingCommand($command,$arguments=[],$interactive = false)
-    {
+    {        
+        $runnableCommand = null;
+        try{
+            $runnableCommand = $this->getApplication()->find($command);
+        }
+        catch(\Symfony\Component\Console\Exception\CommandNotFoundException $e)
+        {
+            return false;
+        }
+
         $outputStyle = new OutputFormatterStyle('white', 'magenta', array('bold'));
         $this->outputInterface->getFormatter()->setStyle('command', $outputStyle);
 
         $this->tmp = '';
         array_walk($arguments,  [$this, 'concatInTmp'] );
         $this->outputInterface->writeLn('<command>Executing : '.$command.$this->tmp.'</command>');
-
-        $runnableCommand = $this->getApplication()->find($command);
 
         $arguments['command'] = $command;
         $input = new ArrayInput($arguments);
