@@ -15,7 +15,7 @@
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "fzaninotto/faker": "^1.6",
         "nelmio/alice": "^3.0@beta",
-        "canadadry/php-matcher": "^2.4"
+        "coduo/php-matcher": "^3.2"
     },
     "autoload": {
         "psr-4": {
