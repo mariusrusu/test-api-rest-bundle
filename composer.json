@@ -22,7 +22,8 @@
             "EveryCheck\\TestApiRestBundle\\": ""
         },
         "exclude-from-classmap": [
-            "/Tests/"
+            "/Tests/",
+            "/Doc/"
         ]
     },
     "autoload-dev": {
