@@ -143,6 +143,7 @@ class PrepareDatabaseForTestCommand extends ContainerAwareCommand
         }
         catch(\Symfony\Component\Console\Exception\CommandNotFoundException $e)
         {
+            $this->outputInterface->writeLn('<info>Executing : command \"'.$command.'\" not found, skipped</info>');
             return false;
         }
 
