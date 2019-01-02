@@ -1,15 +1,17 @@
 <?php
-namespace TestBundle\Service;
+namespace EveryCheck\TestApiRestBundle\Service;
 
-use TestBundle\Service\JsonFileComparator;
+use EveryCheck\TestApiRestBundle\Service\JsonFileComparator;
 
-namespace TestBundle\Exceptions\ExtraKeyException;
-namespace TestBundle\Exceptions\OptionalKeyRedefinedException;
-namespace TestBundle\Exceptions\MissingKeyException;
-namespace TestBundle\Exceptions\PatternNotMatchingException;
-namespace TestBundle\Exceptions\ValueNotAnArrayException;
+namespace EveryCheck\TestApiRestBundle\Exceptions\ExtraKeyException;
+namespace EveryCheck\TestApiRestBundle\Exceptions\OptionalKeyRedefinedException;
+namespace EveryCheck\TestApiRestBundle\Exceptions\MissingKeyException;
+namespace EveryCheck\TestApiRestBundle\Exceptions\PatternNotMatchingException;
+namespace EveryCheck\TestApiRestBundle\Exceptions\ValueNotAnArrayException;
 
-class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class JsonFileComparatorTest  extends TestCase
 {
 
 
@@ -24,6 +26,8 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
             ->setMethods(['match','getError'])
             ->getMock();
 
+
+
         $simpleFactory->method('createMatcher')->willReturn($matcher);
         $matcher->method('match')->willReturn($matcherReturn);
         $matcher->method('getError')->willReturn('mock error');
@@ -32,11 +36,12 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
         //     ->setMethods(['match'])
         //     ->getMock();
 
-        $jsonFileComparator = $this->getMockBuilder('TestBundle\Service\JsonFileComparator')
+
+        $jsonFileComparator = $this->getMockBuilder('EveryCheck\TestApiRestBundle\Service\JsonFileComparator')
 			->setMethods(['loadJSONFromString','loadJSONFromFile'])
 			->setConstructorArgs([$simpleFactory])
             ->getMock();
-        
+
         $jsonFileComparator->expects($this->exactly(1))->method('loadJSONFromString')->willReturn($left);
 
         $jsonFileComparator->expects($this->exactly(empty($sub_right) ? 1 : 2 ))
@@ -57,8 +62,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
     	$right = [];
 
     	$jsonFileComparator = $this->buildJsonFileComparator($left,$right);
-
-    	$this->assertNull($jsonFileComparator->compare());		
+    	$this->assertNull($jsonFileComparator->compare());
     }
 
 
@@ -104,7 +108,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right);
 
-        $this->setExpectedException('TestBundle\Exceptions\ExtraKeyException');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\ExtraKeyException');
 
         $this->assertNull($jsonFileComparator->compare());      
     }
@@ -121,7 +125,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right);
 
-        $this->setExpectedException('TestBundle\Exceptions\MissingKeyException');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\MissingKeyException');
 
         $this->assertNull($jsonFileComparator->compare());  
     }   
@@ -154,7 +158,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right);
 
-        $this->setExpectedException('TestBundle\Exceptions\OptionalKeyRedefinedException');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\OptionalKeyRedefinedException');
 
         $this->assertNull($jsonFileComparator->compare());      
     }
@@ -170,7 +174,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right,false);
 
-        $this->setExpectedException('TestBundle\Exceptions\PatternNotMatchingException');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\PatternNotMatchingException');
 
         $this->assertNull($jsonFileComparator->compare());      
     }
@@ -189,7 +193,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right,true,$right);
 
-        $this->setExpectedException('TestBundle\Exceptions\ValueNotAnArrayException');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\ValueNotAnArrayException');
 
         $this->assertNull($jsonFileComparator->compare());      
     }
@@ -233,7 +237,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right,true,$sub_right);
 
-        $this->setExpectedException('TestBundle\Exceptions\ExtraKeyException');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\ExtraKeyException');
 
         $this->assertNull($jsonFileComparator->compare());      
     }
@@ -315,7 +319,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right);
 
-        $this->setExpectedException('TestBundle\Exceptions\OptionalKeyRedefinedException');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\OptionalKeyRedefinedException');
 
         $jsonFileComparator->compare();      
     }    
@@ -332,7 +336,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right);
 
-        $this->setExpectedException('TestBundle\Exceptions\OptionalKeyRedefinedException');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\OptionalKeyRedefinedException');
 
         $jsonFileComparator->compare();      
     }
@@ -352,7 +356,7 @@ class JsonFileComparatorTest  extends \PHPUnit_Framework_TestCase
 
         $jsonFileComparator = $this->buildJsonFileComparator($left,$right);
         
-        $this->expectException('TestBundle\Exceptions\DontMatchDoesNotWorkWithArray');
+        $this->expectException('EveryCheck\TestApiRestBundle\Exceptions\DontMatchDoesNotWorkWithArray');
         
         $jsonFileComparator->compare();  
 
