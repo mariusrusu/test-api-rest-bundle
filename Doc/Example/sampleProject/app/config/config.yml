@@ -39,7 +39,7 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
+        driver:   pdo_sqlite
         url: '%database_url%'
         charset:  UTF8
         server_version: 5.6
