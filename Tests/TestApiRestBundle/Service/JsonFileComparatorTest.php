@@ -1,7 +1,7 @@
 <?php
 namespace EveryCheck\TestApiRestBundle\Service;
 
-use EveryCheck\TestApiRestBundle\Service\JsonFileComparator;
+use TestApiRestBundle\Service\JsonFileComparator;
 
 namespace EveryCheck\TestApiRestBundle\Exceptions\ExtraKeyException;
 namespace EveryCheck\TestApiRestBundle\Exceptions\OptionalKeyRedefinedException;
