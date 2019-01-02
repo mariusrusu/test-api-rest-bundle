@@ -21,3 +21,7 @@ scenario:
     - { action: "DELETE", url: "/demo/3", status: 404}
     - { action: "POST"  , url: "/demo/new"  , status: 201, in: "postValidDemo" , out: "postedDemo"}
     - { action: "DELETE", url: "/demo/3", status: 204 }
+
+  db_testing:
+    - { action: "POST"  , url: "/demo/new"  , status: 201, in: "postValidDemo" , out: "postedDemo"}
+    - { action: "DB", url: "AppBundle:Demo?id=3", out: "dbTesting" }
