@@ -9,23 +9,28 @@
          stopOnFailure="false"
          syntaxCheck="false"
          colors="true"
-         bootstrap="vendor/autoload.php"
+         bootstrap="Tests/bootstrap.php"
 >
-         
+    <php>
+        <server name="KERNEL_DIR" value="./Tests/sampleProject/App/app/"/>
+    </php>
+
     <testsuites>
-        <testsuite name="SerializerExtraBbundle Test Suite">
+        <testsuite name="APIRestBundleSuite">
             <directory>./Tests</directory>
         </testsuite>
     </testsuites>
     
-    <groups>
-        <exclude>
-            <group>performance</group>
-        </exclude>
-    </groups>
+
     <filter>
         <whitelist>
-            <file>TestApiRestBundle.php</file>
+            <directory>./</directory>
+            <exclude>
+                <directory>./Resources</directory>
+                <directory>./Tests</directory>
+                <directory>./Vendor</directory>
+
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>

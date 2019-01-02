@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Demo
  *
  * @ORM\Table(name="demo")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\DemoRepository")
+ * @ORM\Entity()
  */
 class Demo
 {

@@ -1,10 +1,9 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\Controller;
 
-use AppBundle\AppBundle;
-use AppBundle\Entity\Demo;
-use AppBundle\Form\DemoType;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\Entity\Demo;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\Form\DemoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

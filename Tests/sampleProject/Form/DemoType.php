@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Form;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\Form;
 
-use AppBundle\Entity\Demo;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\Entity\Demo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
