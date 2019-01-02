@@ -19,5 +19,5 @@ unit_tests:
 scenario:
   creation_then_deletion:
     - { action: "DELETE", url: "/demo/3", status: 404}
-    - { action: "POST"  , url: "/demo"  , status: 201, in: "postValidDemo" , out: "postedDemo"}
+    - { action: "POST"  , url: "/demo/new"  , status: 201, in: "postValidDemo" , out: "postedDemo"}
     - { action: "DELETE", url: "/demo/3", status: 204 }

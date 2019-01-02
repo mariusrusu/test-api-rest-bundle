@@ -39,7 +39,7 @@ class DemoController extends Controller
         $demos = $em->getRepository('AppBundle:Demo')->findAll();
         $response = $serializer->serialize($demos, 'json');
 
-        return new Response($response, 200);
+        return new Response($response, 200, ['Content-Type'=>"application/json"]);
     }
 
     /**
@@ -70,7 +70,7 @@ class DemoController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
 
         $response = $serializer->serialize($demo, 'json');
-        return new Response($response, 201);
+        return new Response($response, 201, ['Content-Type'=>"application/json"]);
     }
 
     /**
@@ -93,16 +93,16 @@ class DemoController extends Controller
 
         $em->remove($demo);
         $em->flush();
-        return new Response('', 204);
+        return new Response('', 204, ['Content-Type'=>"application/json"]);
     }
 
     private function notFound()
     {
-        return new Response("The resource you asked doesn't exist", 404);
+        return new Response("The resource you asked doesn't exist", 404, ['Content-Type'=>"application/json"]);
     }
 
     private function badRequest($message)
     {
-        return new Response($message, 400);
+        return new Response($message, 400, ['Content-Type'=>"application/json"]);
     }
 }
