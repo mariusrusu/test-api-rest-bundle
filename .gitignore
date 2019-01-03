@@ -2,3 +2,4 @@
 vendor/
 /.idea
 composer.lock
+Tests/sampleProject/App/var/data/db_test/sampleproject\.db3
