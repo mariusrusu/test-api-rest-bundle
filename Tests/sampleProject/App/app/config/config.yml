@@ -45,6 +45,16 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        mappings:
+            TestApiRestBundle:
+                type: annotation
+                is_bundle: true
+            TestApiRestBundleTest:
+                is_bundle: false
+                dir: %kernel.root_dir%/../../Entity
+                type: annotation
+                prefix: EveryCheck\TestApiRestBundle\Tests\sampleProject\Entity
+                alias: TestApiRestBundle
 
 # Swiftmailer Configuration
 swiftmailer:

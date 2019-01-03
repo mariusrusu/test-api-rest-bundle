@@ -7,7 +7,6 @@ use EveryCheck\TestApiRestBundle\Tests\sampleProject\Form\DemoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -35,7 +34,9 @@ class DemoController extends Controller
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
 
-        $demos = $em->getRepository('AppBundle:Demo')->findAll();
+        $demos = $em->getRepository(Demo::class)->findAll();
+
+
         $response = $serializer->serialize($demos, 'json');
 
         return new Response($response, 200, ['Content-Type'=>"application/json"]);
@@ -82,7 +83,7 @@ class DemoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $demo = $em->getRepository('AppBundle\Entity\Demo')->find($request->get('id'));
+        $demo = $em->getRepository(Demo::class)->find($request->get('id'));
 
 
         if(empty($demo))
