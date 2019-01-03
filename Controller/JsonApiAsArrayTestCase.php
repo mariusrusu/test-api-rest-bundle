@@ -90,7 +90,7 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
 
             try
             {
-                $this->assertTrue($jsonFileComparator->compare());
+                $this->assertNull($jsonFileComparator->compare());
             }
             catch (\Exception $e) 
             {
