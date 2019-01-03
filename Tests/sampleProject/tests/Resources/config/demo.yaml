@@ -24,4 +24,4 @@ scenario:
 
   db_testing:
     - { action: "POST"  , url: "/demo/new"  , status: 201, in: "postValidDemo" , out: "postedDemo"}
-    - { action: "DB", url: "AppBundle:Demo?id=3", out: "dbTesting" }
+    - { action: "DB", url: "TestApiRestBundle:Demo?id=3", out: "dbTesting" }
