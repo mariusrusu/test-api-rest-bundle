@@ -30,7 +30,7 @@ class DemoController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $encoders = array(new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
 
@@ -65,7 +65,7 @@ class DemoController extends Controller
         $em->persist($demo);
         $em->flush();
 
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $encoders = array( new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
 
