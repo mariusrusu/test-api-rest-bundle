@@ -83,7 +83,7 @@ As each tests are independant, the database must be reload at the beginning of t
 
 All you need to have is a `database_url` set in your doctrine configuration.
 
-___Only mysql and sqlite mode are supported by TestApiRestBundle.___
+&#9888;	___Only mysql and sqlite mode are supported by TestApiRestBundle.___
 
 
 Before launching the tests, you must prepare the database by using `bin/console test:database:prepare fixturesname`. For each fixtures file your application contains, it will apply the following .:
@@ -99,7 +99,7 @@ bin/console d:f:l --append
 
 In short, it creates a database files, in .sql and by dumping it in mysql mode or in .sqlite otherwise, per fixtures. Those files are used between each tests to reset the database state. Hence, all the tests are independent and it takes way less time to process.
 
-_Be aware that in mysql mode the tests are more rigorous as it takes into account the relations constraints. But they are much slower to process than in sqlite mode due to the resetting method._
+&#9888; *Be aware that in mysql mode the tests are more rigorous as it takes into account the relations constraints. But they are much slower to process than in sqlite mode due to the resetting method.*
 
 ###Writing a ControllerTest
 
@@ -205,7 +205,7 @@ Each time you want to write an unit test, do it under the ```unit_tests``` tag.
 
 Unit tests are separated by route methods.
 
-:exclamation: ___For now, GET, POST, PATCH, PUT and DELETE methods are suppported for unit testing___
+&#9888; ___For now, GET, POST, PATCH, PUT and DELETE methods are suppported for unit testing___
 
 So, let's say you want to test a DELETE route. To do so, add a DELETE tag : 
 
