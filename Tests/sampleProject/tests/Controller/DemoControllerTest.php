@@ -6,6 +6,9 @@ use EveryCheck\TestApiRestBundle\Loader\ResourcesFileLoader;
 
 class DemoControllerTest extends JsonApiAsArrayTestCase
 {
+    const YAML_PROVIDER_FILENAME = "demo";
+    const FIXTURE_FILENAME = "LoadDemoFixtures";
+
     /**
      * @dataProvider ApiCallProvider
      */
@@ -16,12 +19,12 @@ class DemoControllerTest extends JsonApiAsArrayTestCase
 
     public static function ApiCallProvider()
     {
-        return ResourcesFileLoader::testCaseProvider(__DIR__,"demo");
+        return ResourcesFileLoader::testCaseProvider(__DIR__,self::YAML_PROVIDER_FILENAME);
     }
 
     public function setUp($fixtureFilename = null)
     {
-        parent::setUp("LoadDemoFixtures");
+        parent::setUp(self::FIXTURE_FILENAME);
     }
 
 }
