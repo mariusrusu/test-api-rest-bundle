@@ -19,7 +19,7 @@ class PrepareDatabaseForTestCommand extends ContainerAwareCommand
     {
 
         $this
-            ->setName('test:database:prepare')
+            ->setName('test:database:build-one')
             ->setDescription('Greet someone')
             ->addArgument(
                 'fixture',

@@ -23,7 +23,7 @@ class PrepareDatabaseForTestCommandTest extends KernelTestCase
         $prepareDatabaseCommand = new PrepareDatabaseForTestCommand();
         $this->application->add($prepareDatabaseCommand);
 
-        $command = $this->application->find("test:database:prepare");
+        $command = $this->application->find("test:database:build-one");
 
         $commandTester = new CommandTester($command);
         $commandTester->execute(

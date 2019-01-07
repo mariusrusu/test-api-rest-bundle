@@ -23,7 +23,7 @@ class BuildAllTestCommandTest extends KernelTestCase
         $buildDatabaseCommand = new BuildAllDBTestCommand();
         $this->application->add($buildDatabaseCommand);
 
-        $command = $this->application->find("test:build:database");
+        $command = $this->application->find("test:database:build-all");
 
         $commandTester = new CommandTester($command);
         $commandTester->execute(

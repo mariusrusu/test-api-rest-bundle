@@ -12,7 +12,7 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('test:build:database')
+            ->setName('test:database:build-all')
             ->setDescription('Build the test databases and their fixtures files');
     }
 
@@ -36,7 +36,7 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
             foreach ($in as $item)
             {
                 $output->writeln("Build db for ".$item);
-                $databasePrepareCommand = $this->getApplication()->find("test:database:prepare");
+                $databasePrepareCommand = $this->getApplication()->find("test:database:build-one");
                 $databasePrepareArguments = array(
                     'command' => $databasePrepareCommand->getName(),
                     'fixture' => $item,
