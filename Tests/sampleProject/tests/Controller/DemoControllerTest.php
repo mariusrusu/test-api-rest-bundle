@@ -7,7 +7,7 @@ use EveryCheck\TestApiRestBundle\Loader\ResourcesFileLoader;
 class DemoControllerTest extends JsonApiAsArrayTestCase
 {
     const YAML_PROVIDER_FILENAME = "demo";
-    const FIXTURE_FILENAME = "LoadDemoFixtures";
+    const FIXTURE_FILENAME = "LoadDemoFixture";
 
     /**
      * @dataProvider ApiCallProvider
