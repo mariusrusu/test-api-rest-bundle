@@ -1,14 +1,9 @@
 <?php
 namespace EveryCheck\TestApiRestBundle\Controller;
 
-use Coduo\PHPMatcher\Factory\SimpleFactory;
+use EveryCheck\TestApiRestBundle\Matcher\Matcher;
 use Symfony\Component\HttpFoundation\Response;
  
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader;
-
-use EveryCheck\TestApiRestBundle\Loader\YamlFileLoader;
 use EveryCheck\TestApiRestBundle\Service\JsonFileComparator;
 
 use EveryCheck\TestApiRestBundle\Entity\TestDataChunk;
@@ -82,7 +77,7 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
             $calledClass = get_called_class();
             $calledClassFolder = dirname((new \ReflectionClass($calledClass))->getFileName());
 
-            $jsonFileComparator = new JsonFileComparator(new SimpleFactory);
+            $jsonFileComparator = new JsonFileComparator(new Matcher());
             $jsonFileComparator->setFilePath($calledClassFolder,'..', 'Responses','Expected');
             $jsonFileComparator->setLeftFromString($jsonContent);
             $jsonFileComparator->setRightFromFilename($dataTest->data['out']);
@@ -227,7 +222,7 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
 
             if($expected_content_type == JsonApiAsArrayTestCase::JSON_HEADER)
             {
-                $jsonFileComparator = new JsonFileComparator(new SimpleFactory);
+                $jsonFileComparator = new JsonFileComparator(new Matcher());
                 try
                 {
 

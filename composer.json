@@ -13,7 +13,7 @@
         "phpunit/phpunit": "^6.0",
         "symfony/phpunit-bridge": "^3.0",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
-        "canadadry/php-matcher": "^2.4"
+        "coduo/php-matcher": "*@dev"
     },
     "require-dev": {
         "symfony/symfony": "3.2.*",
