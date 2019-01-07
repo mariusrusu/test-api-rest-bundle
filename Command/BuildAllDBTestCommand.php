@@ -2,13 +2,10 @@
 namespace EveryCheck\TestApiRestBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputDefinition;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Tester\CommandTester;
 
 class BuildAllDBTestCommand extends ContainerAwareCommand
 {
@@ -21,27 +18,43 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $testfl = $this->getApplication()->find("test:fixture:list");
-        $argumentsTestfl = [];
+        $listAllFixtureCommand = $this->getApplication()->find("test:fixture:list");
 
-        $input = new ArrayInput($argumentsTestfl);
-        $returnCode = $testfl->run($input, $output);
+        $listAllFixtureLauncher = new CommandTester($listAllFixtureCommand);
+        $listAllFixtureLauncher->execute(
+            [
+                "command" => $listAllFixtureCommand->getName(),
+                "--query" => "../../tests/DataFixtures/ORM/*Fixture.php"
+            ]
+        );
 
-        if($returnCode != 0)
+        $listAllFixtureResult = $listAllFixtureLauncher->getDisplay();
+
+        if(!empty($listAllFixtureResult))
         {
-            foreach($output as $item)
+            $in = explode(" ", rtrim($listAllFixtureResult));
+            foreach ($in as $item)
             {
-                $testdataprep = $this->getApplication()->find("test:database:prepare");
-                $argumentsTestdataprep = [$item.' --env=test  --ansi'];
+                $output->writeln("Build db for ".$item);
+                $databasePrepareCommand = $this->getApplication()->find("test:database:prepare");
+                $databasePrepareArguments = array(
+                    'command' => $databasePrepareCommand->getName(),
+                    'fixture' => $item,
+                    '--path'  => "../var/data/db_test/",
+                    '--query' => "../../tests/DataFixtures/ORM/*Fixture.php"
+                );
 
-                $input = new ArrayInput($argumentsTestdataprep);
-
-                $output->writeln("build db for ".$item);
-
-                $returnCode = $testdataprep->run($input, $output);
-
+                $databasePrepareInput= new ArrayInput($databasePrepareArguments);
+                $databasePrepareReturn = $databasePrepareCommand->run($databasePrepareInput, $output);
             }
+
+            $output->writeln("Database is ready to be tested !");
         }
+        else
+        {
+            $output->writeln("No fixtures file have been found.");
+        }
+
     }
 
 }
