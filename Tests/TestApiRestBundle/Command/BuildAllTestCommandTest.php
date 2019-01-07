@@ -28,7 +28,7 @@ class BuildAllTestCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(
             [
-                "command" => $command->getName(),
+                "command" => $command->getName()
             ]
         );
         $output = $commandTester->getDisplay();

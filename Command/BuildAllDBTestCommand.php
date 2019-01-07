@@ -24,7 +24,6 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
         $listAllFixtureLauncher->execute(
             [
                 "command" => $listAllFixtureCommand->getName(),
-                "--query" => "../../tests/DataFixtures/ORM/*Fixture.php"
             ]
         );
 
@@ -39,9 +38,7 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
                 $databasePrepareCommand = $this->getApplication()->find("test:database:build-one");
                 $databasePrepareArguments = array(
                     'command' => $databasePrepareCommand->getName(),
-                    'fixture' => $item,
-                    '--path'  => "../var/data/db_test/",
-                    '--query' => "../../tests/DataFixtures/ORM/*Fixture.php"
+                    'fixture' => $item
                 );
 
                 $databasePrepareInput= new ArrayInput($databasePrepareArguments);
