@@ -1,8 +1,6 @@
 <?php
 namespace EveryCheck\TestApiRestBundle\Service;
 
-use Coduo\PHPMatcher\Factory\SimpleFactory;
-
 use EveryCheck\TestApiRestBundle\Exceptions\ExtraKeyException;
 use EveryCheck\TestApiRestBundle\Exceptions\OptionalKeyRedefinedException;
 use EveryCheck\TestApiRestBundle\Exceptions\MissingKeyException;
@@ -11,6 +9,7 @@ use EveryCheck\TestApiRestBundle\Exceptions\PatternMatchingException;
 use EveryCheck\TestApiRestBundle\Exceptions\ValueNotAnArrayException;
 use EveryCheck\TestApiRestBundle\Exceptions\FileNotFoundException;
 use EveryCheck\TestApiRestBundle\Exceptions\DontMatchDoesNotWorkWithArray;
+use EveryCheck\TestApiRestBundle\Matcher\Matcher;
 
 class JsonFileComparator 
 {
@@ -22,9 +21,9 @@ class JsonFileComparator
     protected $pathPart = array();
     protected $extractedVar = [];
 
-    function __construct(SimpleFactory $factory)
+    function __construct(Matcher $matcher)
     {
-        $this->matcher = $factory->createMatcher();
+        $this->matcher = $matcher;
     }
 
     public function setLeftFromString($string)
@@ -61,7 +60,6 @@ class JsonFileComparator
     public function compare()
     {
         $this->matchJsonAsArray($this->left,$this->right,$this->context);
-        return true;
     }
 
     protected function loadJSONFromString($string, $src='string')

@@ -1,17 +1,16 @@
 <?php
 namespace EveryCheck\TestApiRestBundle\Controller;
 
-use Coduo\PHPMatcher\Factory\SimpleFactory;
+use EveryCheck\TestApiRestBundle\Matcher\Matcher;
 use Symfony\Component\HttpFoundation\Response;
  
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\Loader;
-
-use EveryCheck\TestApiRestBundle\Loader\YamlFileLoader;
 use EveryCheck\TestApiRestBundle\Service\JsonFileComparator;
 
 use EveryCheck\TestApiRestBundle\Entity\TestDataChunk;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
@@ -68,12 +67,17 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
             {
                 $this->fail("Cannot parse db url : ". $e->getMessage());
             }
-            $jsonContent = static::$kernel->getContainer()->get('jms_serializer')->serialize($entities,'json');
+
+            $encoders = array(new XmlEncoder(), new JsonEncoder());
+            $normalizers = array(new ObjectNormalizer());
+            $serializer = new Serializer($normalizers, $encoders);
+
+            $jsonContent = $serializer->serialize($entities, 'json');
 
             $calledClass = get_called_class();
             $calledClassFolder = dirname((new \ReflectionClass($calledClass))->getFileName());
 
-            $jsonFileComparator = new JsonFileComparator(new SimpleFactory);
+            $jsonFileComparator = new JsonFileComparator(new Matcher());
             $jsonFileComparator->setFilePath($calledClassFolder,'..', 'Responses','Expected');
             $jsonFileComparator->setLeftFromString($jsonContent);
             $jsonFileComparator->setRightFromFilename($dataTest->data['out']);
@@ -81,7 +85,7 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
 
             try
             {
-                $this->assertTrue($jsonFileComparator->compare());
+                $this->assertNull($jsonFileComparator->compare());
             }
             catch (\Exception $e) 
             {
@@ -218,7 +222,7 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
 
             if($expected_content_type == JsonApiAsArrayTestCase::JSON_HEADER)
             {
-                $jsonFileComparator = new JsonFileComparator(new SimpleFactory);
+                $jsonFileComparator = new JsonFileComparator(new Matcher());
                 try
                 {
 
