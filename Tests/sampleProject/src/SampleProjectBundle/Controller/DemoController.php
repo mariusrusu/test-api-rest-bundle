@@ -1,16 +1,15 @@
 <?php
 
-namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\Controller;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Controller;
 
-use EveryCheck\TestApiRestBundle\Tests\sampleProject\Entity\Demo;
-use EveryCheck\TestApiRestBundle\Tests\sampleProject\Form\DemoType;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Entity\Demo;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Form\DemoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 

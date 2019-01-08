@@ -1,7 +1,7 @@
 <?php
 namespace EveryCheck\TestApiRestBundle\Service;
 
-use TestApiRestBundle\Service\JsonFileComparator;
+use EveryCheck\TestApiRestBundle\Service\JsonFileComparator;
 
 namespace EveryCheck\TestApiRestBundle\Exceptions\ExtraKeyException;
 namespace EveryCheck\TestApiRestBundle\Exceptions\OptionalKeyRedefinedException;
@@ -17,29 +17,16 @@ class JsonFileComparatorTest  extends TestCase
 
     protected function buildJsonFileComparator($left, $right, $matcherReturn = true, $sub_right = null)
     {
-
-        $simpleFactory = $this->getMockBuilder('Coduo\PHPMatcher\Factory\SimpleFactory')
-            ->setMethods(['createMatcher'])
-            ->getMock();
-
-        $matcher = $this->getMockBuilder('Coduo\PHPMatcher\MatcherInterface')
+        $matcher = $this->getMockBuilder('EveryCheck\TestApiRestBundle\Matcher\Matcher')
             ->setMethods(['match','getError'])
             ->getMock();
 
-
-
-        $simpleFactory->method('createMatcher')->willReturn($matcher);
         $matcher->method('match')->willReturn($matcherReturn);
         $matcher->method('getError')->willReturn('mock error');
 
-        // $matcher = $this->getMockBuilder('Coduo\PHPMatcher\MatcherInterface')
-        //     ->setMethods(['match'])
-        //     ->getMock();
-
-
         $jsonFileComparator = $this->getMockBuilder('EveryCheck\TestApiRestBundle\Service\JsonFileComparator')
 			->setMethods(['loadJSONFromString','loadJSONFromFile'])
-			->setConstructorArgs([$simpleFactory])
+			->setConstructorArgs([$matcher])
             ->getMock();
 
         $jsonFileComparator->expects($this->exactly(1))->method('loadJSONFromString')->willReturn($left);

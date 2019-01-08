@@ -15,11 +15,13 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\DebugBundle\DebugBundle(),
             new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
             new Sensio\Bundle\DistributionBundle\SensioDistributionBundle(),
-            new EveryCheck\TestApiRestBundle\TestApiRestBundle()
+            new EveryCheck\TestApiRestBundle\TestApiRestBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
         ];
     }
 

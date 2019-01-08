@@ -12,7 +12,7 @@
          bootstrap="Tests/bootstrap.php"
 >
     <php>
-        <server name="KERNEL_DIR" value="./Tests/sampleProject/App/app/"/>
+        <server name="KERNEL_DIR" value="./Tests/sampleProject/app/"/>
     </php>
 
     <testsuites>
