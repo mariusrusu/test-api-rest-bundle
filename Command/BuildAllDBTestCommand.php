@@ -2,8 +2,8 @@
 namespace EveryCheck\TestApiRestBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Tester\CommandTester;
 
@@ -13,7 +13,15 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
     {
         $this
             ->setName('test:database:build-all')
-            ->setDescription('Build the test databases and their fixtures files');
+            ->setDescription('Build the test databases and their fixtures files')
+            ->addOption(
+                'bin',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Set the path for the console.',
+                "bin/console"
+            )
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -38,15 +46,7 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
             foreach ($in as $item)
             {
                 $output->writeln("Build db for ".$item);
-                $databasePrepareCommand = $application->find("test:database:build-one");
-                $databasePrepareArguments = array(
-                    'command' => $databasePrepareCommand->getName(),
-                    'fixture' => $item,
-                    '--env'   => "test"
-                );
-
-                $databasePrepareInput= new ArrayInput($databasePrepareArguments);
-                $databasePrepareReturn = $databasePrepareCommand->run($databasePrepareInput, $output);
+                shell_exec($input->getOption('bin')." test:data:build-one $item --env=test  --ansi");
             }
 
             $output->writeln("Database is ready to be tested !");

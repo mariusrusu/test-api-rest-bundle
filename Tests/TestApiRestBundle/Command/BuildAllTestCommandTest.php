@@ -3,7 +3,6 @@ namespace EveryCheck\TestApiRestBundle\Tests\TestApiRestBundle\Command;
 
 
 use EveryCheck\TestApiRestBundle\Command\BuildAllDBTestCommand;
-use EveryCheck\TestApiRestBundle\Doc\Example\sampleProject\tests\SampleProjectBundle\Controller\DemoControllerTest;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -28,17 +27,14 @@ class BuildAllTestCommandTest extends KernelTestCase
         $commandTester = new CommandTester($command);
         $commandTester->execute(
             [
-                "command" => $command->getName()
+                "command" => $command->getName(),
+                "--bin" => "./Tests/sampleProject/app/console"
             ]
         );
         $output = $commandTester->getDisplay();
 
-        $this->assertContains("Build db for ".DemoControllerTest::FIXTURE_FILENAME, $output);
-        $this->assertContains("loading Doctrine\Bundle\FixturesBundle\EmptyFixture", $output);
-        $this->assertContains("loading EveryCheck\TestApiRestBundle\Tests\sampleProject\\tests\SampleProjectBundle\DataFixtures\ORM\\".DemoControllerTest::FIXTURE_FILENAME, $output);
+        $this->assertContains("Build db for LoadDemoFixture", $output);
         $this->assertContains("Build db for LoadDemoBisFixture", $output);
-        $this->assertContains("loading EveryCheck\TestApiRestBundle\Tests\sampleProject\\tests\SampleProjectBisBundle\DataFixtures\ORM\LoadDemoBisFixture", $output);
         $this->assertContains("Database is ready to be tested !", $output);
-
     }
 }
