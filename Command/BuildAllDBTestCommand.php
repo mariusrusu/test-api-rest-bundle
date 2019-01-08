@@ -38,7 +38,8 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
                 $databasePrepareCommand = $this->getApplication()->find("test:database:build-one");
                 $databasePrepareArguments = array(
                     'command' => $databasePrepareCommand->getName(),
-                    'fixture' => $item
+                    'fixture' => $item,
+                    '--path'  => "../var/data/db_test/",
                 );
 
                 $databasePrepareInput= new ArrayInput($databasePrepareArguments);

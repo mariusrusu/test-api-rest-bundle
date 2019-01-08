@@ -51,9 +51,9 @@ doctrine:
                 is_bundle: true
             TestApiRestBundleTest:
                 is_bundle: false
-                dir: %kernel.root_dir%/../../Entity
+                dir: %kernel.root_dir%/../src/SampleProjectBundle/Entity
                 type: annotation
-                prefix: EveryCheck\TestApiRestBundle\Tests\sampleProject\Entity
+                prefix: EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Entity
                 alias: TestApiRestBundle
 
 # Swiftmailer Configuration

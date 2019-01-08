@@ -27,7 +27,6 @@ class ListAllTestFixtureAvailableCommandTest extends KernelTestCase
         $commandTester->execute(
             [
                 "command" => $command->getName(),
-                "--query" => "../../tests/DataFixtures/ORM/*Fixture.php"
             ]
         );
         $output = $commandTester->getDisplay();
