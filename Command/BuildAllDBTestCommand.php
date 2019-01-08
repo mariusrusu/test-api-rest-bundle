@@ -18,12 +18,15 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $listAllFixtureCommand = $this->getApplication()->find("test:fixture:list");
+        $application = $this->getApplication();
+        $application->setAutoExit(false);
+        $listAllFixtureCommand = $application->find("test:fixture:list");
 
         $listAllFixtureLauncher = new CommandTester($listAllFixtureCommand);
         $listAllFixtureLauncher->execute(
             [
                 "command" => $listAllFixtureCommand->getName(),
+                '--env'   => "test"
             ]
         );
 
@@ -35,11 +38,11 @@ class BuildAllDBTestCommand extends ContainerAwareCommand
             foreach ($in as $item)
             {
                 $output->writeln("Build db for ".$item);
-                $databasePrepareCommand = $this->getApplication()->find("test:database:build-one");
+                $databasePrepareCommand = $application->find("test:database:build-one");
                 $databasePrepareArguments = array(
                     'command' => $databasePrepareCommand->getName(),
                     'fixture' => $item,
-                    '--path'  => "../var/data/db_test/",
+                    '--env'   => "test"
                 );
 
                 $databasePrepareInput= new ArrayInput($databasePrepareArguments);
