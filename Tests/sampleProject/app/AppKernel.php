@@ -20,7 +20,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\DebugBundle\DebugBundle(),
             new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
             new Sensio\Bundle\DistributionBundle\SensioDistributionBundle(),
-            new EveryCheck\TestApiRestBundle\TestApiRestBundle()
+            new EveryCheck\TestApiRestBundle\TestApiRestBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
         ];
     }
 
