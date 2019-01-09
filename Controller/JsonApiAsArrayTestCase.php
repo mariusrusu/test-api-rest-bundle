@@ -3,12 +3,9 @@ namespace EveryCheck\TestApiRestBundle\Controller;
 
 use EveryCheck\TestApiRestBundle\Matcher\Matcher;
 use Symfony\Component\HttpFoundation\Response;
- 
 use EveryCheck\TestApiRestBundle\Service\JsonFileComparator;
-
 use EveryCheck\TestApiRestBundle\Entity\TestDataChunk;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
@@ -68,9 +65,12 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
                 $this->fail("Cannot parse db url : ". $e->getMessage());
             }
 
-            $encoders = array(new XmlEncoder(), new JsonEncoder());
-            $normalizers = array(new ObjectNormalizer());
-            $serializer = new Serializer($normalizers, $encoders);
+            $encoders = new JsonEncoder();
+            $normalizers = new ObjectNormalizer();
+            $normalizers->setCircularReferenceHandler(function($object){
+                return $object->getId();
+            });
+            $serializer = new Serializer([$normalizers], [$encoders]);
 
             $jsonContent = $serializer->serialize($entities, 'json');
 
