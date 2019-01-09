@@ -8,5 +8,8 @@
         <service id="pdo_flysystem_service" class="EveryCheck\TestApiRestBundle\Service\PdoFlySystem">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
+        <service id="datetime_normalizer" class="EveryCheck\TestApiRestBundle\Service\DateTimeNormalizer">
+            <tag name="serializer.normalizer" />
+        </service>
     </services>
 </container>

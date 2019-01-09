@@ -5,6 +5,9 @@ use EveryCheck\TestApiRestBundle\Matcher\Matcher;
 use Symfony\Component\HttpFoundation\Response;
 use EveryCheck\TestApiRestBundle\Service\JsonFileComparator;
 use EveryCheck\TestApiRestBundle\Entity\TestDataChunk;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
 {
@@ -61,12 +64,18 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
                 $this->fail("Cannot parse db url : ". $e->getMessage());
             }
 
-            $jsonContent = static::$kernel->getContainer()
-                ->get('jms_serializer')
-                ->serialize($entities, "json");
+            $normalizers = new ObjectNormalizer();
+
+            $normalizers->setCircularReferenceHandler(function($object){
+                return $object->getId();
+            });
+
+            $serializer = new Serializer([$normalizers], [new JsonEncoder()]);
 
             $calledClass = get_called_class();
             $calledClassFolder = dirname((new \ReflectionClass($calledClass))->getFileName());
+
+            $jsonContent = $serializer->serialize($entities, 'json');
 
             $jsonFileComparator = new JsonFileComparator(new Matcher());
             $jsonFileComparator->setFilePath($calledClassFolder,'..', 'Responses','Expected');
