@@ -1,5 +1,5 @@
 <?php
-namespace EveryCheck\TestApiRestBundle\Doc\Example\sampleProject\tests\SampleProjectBundle\Controller;
+namespace EveryCheck\TestApiRestBundle\Doc\Example\sampleProject\tests\DemoBundle\Controller;
 
 use EveryCheck\TestApiRestBundle\Controller\JsonApiAsArrayTestCase;
 use EveryCheck\TestApiRestBundle\Loader\ResourcesFileLoader;

@@ -4,7 +4,7 @@ namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\app\DataFixtures\ORM;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Entity\Demo;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\DemoBundle\Entity\Demo;
 
 class LoadDemoFixture extends Fixture
 {

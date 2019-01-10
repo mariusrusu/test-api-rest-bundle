@@ -1,6 +1,6 @@
 <?php
 
-namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Entity;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

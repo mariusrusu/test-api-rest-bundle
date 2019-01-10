@@ -1,0 +1,22 @@
+unit_tests:
+  GET:
+    - { url: "/pattern"    , status: 200, out: "listOfPatterns"}
+
+  PATCH:
+    - { url: "/pattern/1"  , status: 405}
+
+  PUT:
+    - { url: "/pattern/1"  , status: 405}
+
+  POST:
+    - { url: "/pattern/new", status: 400, in: "postInvalidPattern" }
+    - { url: "/pattern/new", status: 201, in: "postValidPattern" , out: "postedPattern" }
+
+  DELETE:
+    - { url: "/pattern/a"  , status: 404 }
+    - { url: "/pattern/1"  , status: 204 }
+
+scenario:
+  creation_then_deletion:
+    - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPattern" , out: "postedPattern"}
+    - { action: "DELETE", url: "/pattern/#id#", status: 204 }
