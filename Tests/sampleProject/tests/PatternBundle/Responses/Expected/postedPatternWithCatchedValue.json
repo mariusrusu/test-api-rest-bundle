@@ -1,6 +1,6 @@
 {
   "id":"#id={{@integer@}}",
-  "name":"#name={{posted}}",
+  "name":"posted",
   "value":418,
   "date_of_creation":"@string@.isDateTime()",
   "active":true

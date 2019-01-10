@@ -20,3 +20,7 @@ scenario:
   creation_then_deletion:
     - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPattern" , out: "postedPattern"}
     - { action: "DELETE", url: "/pattern/#id#", status: 204 }
+
+  post_with_catched_value:
+    - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPattern" , out: "postedPattern"}
+    - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPatternWithCatchedValue" , out: "postedPatternWithCatchedValue"}

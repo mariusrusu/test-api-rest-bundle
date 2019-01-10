@@ -105,7 +105,7 @@ For example, say that you have a huge amount of entries for an entity in your da
 }
 ```
 
-See that ```"#id={{@integer@}}"``` patter ? Not only it asserts the value is an integer, but also save it in an ```id``` variable. Then, in your next test, use it like that :
+See that ```"#id={{@integer@}}"``` patter ? Not only it asserts the value is an integer, but also save it in an ```id``` variable. Now, to delete that entry using the catched variable, write your next test like that :
 
 ```yaml
     - { action: "DELETE", url: "/pattern/#id#", status: 204 }
@@ -117,6 +117,31 @@ So a complete scenario test will look like :
 creation_then_deletion:
     - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPattern" , out: "postedPattern"}
     - { action: "DELETE", url: "/pattern/#id#", status: 204 }
+```
+
+You can reuse value either in the yaml file or in json payload file : 
+
+```yaml
+  post_with_catched_value:
+    - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPattern" , out: "postedPattern"}
+    - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPatternWithCatchedValue" , out: "postedPatternWithCatchedValue"}
+```
+
+```json
+{
+  "id":"#id={{@integer@}}",
+  "name":"#name={{posted}}",
+  "value":418,
+  "date_of_creation":"@string@.isDateTime()",
+  "active":true
+}
+```
+
+```json
+{
+  "name" : "#name#",
+  "value": 418
+}
 ```
 
 You can catch as many value you want, but keep in mind that if you use the same variable name twice, the initial value will be over-written.
