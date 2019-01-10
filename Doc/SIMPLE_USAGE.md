@@ -1,5 +1,12 @@
 #Usages
 
+* [Basic usages with a simple demo app](#markdown-header-basic-usages-with-a-simple-demo-app)
+* [Databsae preparation for the tests](#markdown-header-database-preparation-for-the-tests)
+* [Writing a ControllerTest](#markdown-header-writing-a-controllertest)
+* [Writing tests](#markdown-header-writing-tests)
+    * [Unit testing](#markdown-header-unit-testing)
+    * [Scenario testing](#markdown-header-scenario-testing)
+    
 ##Basic usages with a simple demo app
 To demonstrate to you how to use the bundle, we have created a sample project. You can find it [here](../Tests/sampleProject/src/DemoBundle) and reproduce it to try our bundle.
 

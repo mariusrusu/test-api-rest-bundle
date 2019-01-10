@@ -1,5 +1,10 @@
 #Usages
 
+* [Advanced usages by checking responses pattern](#markdown-header-advanced-usages-by-checking-responses-pattern)
+* [What are patterns ?](#markdown-header-what-are-patterns)
+* [Writing expected responses with patterns](#markdown-header-writing-expected-responses-with-patterns)
+* [Use value catching and reuse with patterns](#markdown-header-use-value-catching-and-reuse-with-patterns)
+    
 ##Advanced usages by checking responses pattern
 
 Sometimes when you test your API, you can't be assured of the exact data you get in responses. Either it is too random (as with a uuid or a password hash), either it is too precise (as with a datetime). Or sometime you even don't care of certain values in your responses, like an id. But you still need to assert that value, for constraint and security reasons. With TestApiRestBundle, it's handled with patterns
