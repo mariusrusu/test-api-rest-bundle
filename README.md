@@ -8,10 +8,10 @@ TestApiRestBundle allows you to test your Symfony REST API deeply. It checks the
 
 #Table of contents
 
-* [About](#about)
-* [Installation](#installation)
-* [Usages](#usages)
-* [Tests folder structure](#tests-folder-structure)
+* [About](#markdown-header-about)
+* [Installation](#markdown-header-installation)
+* [Usages](#markdown-header-usages)
+* [Tests folder structure](#markdown-header-tests-folder-structure)
 
 
 ##Installation
