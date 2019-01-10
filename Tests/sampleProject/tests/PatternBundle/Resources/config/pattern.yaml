@@ -14,13 +14,13 @@ unit_tests:
 
   DELETE:
     - { url: "/pattern/a"  , status: 404 }
-    - { url: "/pattern/1"  , status: 204 }
+    - { url: "/pattern/03d00000-0000-4000-a000-000000000001"  , status: 204 }
 
 scenario:
   creation_then_deletion:
-    - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPattern" , out: "postedPattern"}
-    - { action: "DELETE", url: "/pattern/#id#", status: 204 }
+    - { action: "POST"  , url: "/pattern/new"   , status: 201, in: "postValidPattern", out: "postedPattern"}
+    - { action: "DELETE", url: "/pattern/#uuid#", status: 204 }
 
   post_with_catched_value:
-    - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPattern" , out: "postedPattern"}
-    - { action: "POST"  , url: "/pattern/new"  , status: 201, in: "postValidPatternWithCatchedValue" , out: "postedPatternWithCatchedValue"}
+    - { action: "POST"  , url: "/pattern/new", status: 201, in: "postValidPattern"                , out: "postedPattern"}
+    - { action: "POST"  , url: "/pattern/new", status: 201, in: "postValidPatternWithCatchedValue", out: "postedPatternWithCatchedValue"}

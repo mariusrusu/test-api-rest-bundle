@@ -14,6 +14,7 @@ class LoadPatternFixture extends Fixture
         $pattern1->setName("foo");
         $pattern1->setValue(300);
         $manager->persist($pattern1);
+        $pattern1->setUuid(\Ramsey\Uuid\Uuid::fromString("03d00000-0000-4000-a000-000000000001"));
 
         $pattern2 = new Pattern();
         $pattern2 ->setName("the answer");

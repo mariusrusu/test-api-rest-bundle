@@ -26,7 +26,11 @@ composer require --dev everycheck\test-api-rest-bundle
 ##Usages
 
 * [Basic usages](Doc/SIMPLE_USAGE.md)
-* [Check the responses pattern](Doc/PATTERN_USAGE.md)
+
+###Advanced usages
+
+* [Test dynamic responses](Doc/PATTERN_USAGE.md)
+* [Reuse response content](Doc/REUSE_USAGE.md)
 
 
 ##Tests folder structure

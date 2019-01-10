@@ -1,5 +1,6 @@
 {
-  "id":"#id={{@integer@}}",
+  "id":"@integer@",
+  "uuid": "@uuid@",
   "name":"posted",
   "value":418,
   "date_of_creation":"@string@.isDateTime()",

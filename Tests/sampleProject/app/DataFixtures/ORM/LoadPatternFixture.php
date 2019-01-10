@@ -21,5 +21,8 @@ class LoadPatternFixture extends Fixture
         $manager->persist($pattern2 );
 
         $manager->flush();
+        $pattern1->setUuid(\Ramsey\Uuid\Uuid::fromString("03d00000-0000-4000-a000-000000000001"));
+        $manager->persist($pattern1);
+        $manager->flush();
     }
 }

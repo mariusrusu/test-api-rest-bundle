@@ -2,6 +2,7 @@
 
 namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Controller;
 
+use Doctrine\ORM\NoResultException;
 use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Entity\Pattern;
 use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Form\PatternType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -72,22 +73,36 @@ class PatternController extends Controller
     /**
      * Deletes a pattern entity.
      *
-     * @Route("/{id}", name="pattern_delete")
+     * @Route("/{uuid}", name="pattern_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $pattern = $em->getRepository(Pattern::class)->find($request->get('id'));
+        $qb = $em->createQueryBuilder();
 
+        $query = $qb->select('p')
+            ->from(Pattern::class,'p')
+            ->where('p.uuid = :uuid')
+            ->setParameter('uuid', $request->get('uuid'))
+            ->getQuery();
 
-        if(empty($pattern))
+        try
+        {
+            $result = $query->getSingleResult();
+        }
+        catch(NoResultException $e)
+        {
+            $result = null;
+        }
+
+        if(empty($result))
         {
             return $this->notFound();
         }
 
-        $em->remove($pattern);
+        $em->remove($result);
         $em->flush();
         return new Response('', 204, ['Content-Type'=>"application/json"]);
     }

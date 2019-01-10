@@ -3,21 +3,34 @@
 namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Demo
  *
  * @ORM\Table(name="pattern")
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity()
  */
 class Pattern
 {
     /**
-     * @var int
+     * @var \Ramsey\Uuid\Uuid
      *
+     * @ORM\Column(type="uuid", unique=true)
+     * @JMS\Accessor(getter="getUuidAsString")
+     */
+    private $uuid;
+
+    /**
+     * IMPORTANT! This field annotation must be the last one in order to prevent
+     * that Doctrine will use UuidGenerator as $`class->idGenerator`!
+     *
+     * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -57,15 +70,53 @@ class Pattern
         $this->setDateOfCreation(new \DateTime('now'));
     }
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
+    public function getid()
     {
         return $this->id;
     }
+
+    /**
+     * Get uuid
+     *
+     * @return \Ramsey\Uuid\Uuid
+     */
+    public function getUuid()
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * Get uuid
+     *
+     * @return string
+     */
+    public function getUuidAsString()
+    {
+        return $this->uuid->toString();
+    }
+
+
+    /**
+     * Set uuid
+     *
+     * @return Study
+     */
+    public function setUuid(\Ramsey\Uuid\Uuid $uuid )
+    {
+        $this->uuid = $uuid;
+        return $this;
+    }
+
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setupUuid()
+    {
+        $this->setUuid(\Ramsey\Uuid\Uuid::uuid4());
+        return $this;
+    }
+
 
     /**
      * Set name.

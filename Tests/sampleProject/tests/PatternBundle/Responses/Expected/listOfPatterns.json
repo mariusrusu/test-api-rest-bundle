@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "uuid": "@uuid@",
     "name" : "@string@",
     "value": "@integer@",
     "date_of_creation": "@string@.isDateTime().before('tomorrow').after('yesterday')",
@@ -8,6 +9,7 @@
   },
   {
     "id": 2,
+    "uuid": "@uuid@",
     "name" : "@string@",
     "value": "@integer@",
     "date_of_creation": "@string@.isDateTime().before('tomorrow').after('yesterday')",
