@@ -34,7 +34,7 @@ class BuildAllTestCommandTest extends KernelTestCase
         $output = $commandTester->getDisplay();
 
         $this->assertContains("Build db for LoadDemoFixture", $output);
-        $this->assertContains("Build db for LoadDemoBisFixture", $output);
+        $this->assertContains("Build db for LoadPatternFixture", $output);
         $this->assertContains("Database is ready to be tested !", $output);
     }
 }

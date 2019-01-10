@@ -1,13 +1,13 @@
 <?php
 
-namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Form;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Form;
 
-use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Entity\Demo;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Entity\Pattern;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DemoType extends AbstractType
+class PatternType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,7 +19,7 @@ class DemoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Demo::class,
+            'data_class' => Pattern::class,
             "csrf_protection" => false
         ]);
     }

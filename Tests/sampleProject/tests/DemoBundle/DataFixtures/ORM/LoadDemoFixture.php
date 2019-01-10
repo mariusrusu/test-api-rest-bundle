@@ -1,10 +1,10 @@
 <?php
 
-namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\tests\SampleProjectBundle\DataFixtures\ORM;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\tests\DemoBundle\DataFixtures\ORM;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Entity\Demo;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\DemoBundle\Entity\Demo;
 
 class LoadDemoFixture extends Fixture
 {

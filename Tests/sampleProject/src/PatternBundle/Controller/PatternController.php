@@ -1,9 +1,9 @@
 <?php
 
-namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Controller;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Controller;
 
-use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Entity\Demo;
-use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\SampleProjectBundle\Form\DemoType;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Entity\Pattern;
+use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Form\PatternType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,44 +14,42 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * Demo controller.
+ * Pattern controller.
  *
- * @Route("demo")
+ * @Route("pattern")
  */
-class DemoController extends Controller
+class PatternController extends Controller
 {
     /**
-     * Lists all demo entities.
+     * Lists all pattern entities.
      *
-     * @Route("", name="demo_index")
+     * @Route("", name="pattern_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $encoders = array(new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
 
-        $demos = $em->getRepository(Demo::class)->findAll();
+        $patterns = $em->getRepository(Pattern::class)->findAll();
 
-
-        $response = $serializer->serialize($demos, 'json');
+        $response = $this
+            ->get('jms_serializer')
+            ->serialize($patterns, 'json');
 
         return new Response($response, 200, ['Content-Type'=>"application/json"]);
     }
 
     /**
-     * Creates a new demo entity.
+     * Creates a new pattern entity.
      *
-     * @Route("/new", name="demo_new")
+     * @Route("/new", name="pattern_new")
      * @Method({"POST"})
      */
     public function newAction(Request $request)
     {
         $data = json_decode($request->getContent(), true);
-        $demo = new Demo();
-        $form = $this->createForm(DemoType::class, $demo);
+        $pattern = new Pattern();
+        $form = $this->createForm(PatternType::class, $pattern);
         $form->submit($data);
 
         if(!$form->isValid())
@@ -61,36 +59,35 @@ class DemoController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $em->persist($demo);
+        $em->persist($pattern);
         $em->flush();
 
-        $encoders = array( new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
+        $response = $this
+            ->get('jms_serializer')
+            ->serialize($pattern, 'json');
 
-        $response = $serializer->serialize($demo, 'json');
         return new Response($response, 201, ['Content-Type'=>"application/json"]);
     }
 
     /**
-     * Deletes a demo entity.
+     * Deletes a pattern entity.
      *
-     * @Route("/{id}", name="demo_delete")
+     * @Route("/{id}", name="pattern_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $demo = $em->getRepository(Demo::class)->find($request->get('id'));
+        $pattern = $em->getRepository(Pattern::class)->find($request->get('id'));
 
 
-        if(empty($demo))
+        if(empty($pattern))
         {
             return $this->notFound();
         }
 
-        $em->remove($demo);
+        $em->remove($pattern);
         $em->flush();
         return new Response('', 204, ['Content-Type'=>"application/json"]);
     }

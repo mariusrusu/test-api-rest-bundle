@@ -1,5 +1,10 @@
-test_api_rest_bundle:
-    resource: "@TestApiRestBundle/Tests/sampleProject/src/SampleProjectBundle/Controller/"
+test_api_rest_bundle_demo:
+    resource: "@TestApiRestBundle/Tests/sampleProject/src/DemoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+test_api_rest_bundle_pattern:
+    resource: "@TestApiRestBundle/Tests/sampleProject/src/PatternBundle/Controller/"
     type:     annotation
     prefix:   /
 
