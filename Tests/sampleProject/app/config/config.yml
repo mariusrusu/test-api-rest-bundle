@@ -54,13 +54,13 @@ doctrine:
                 dir: "%kernel.root_dir%/../src/DemoBundle/Entity"
                 type: annotation
                 prefix: EveryCheck\TestApiRestBundle\Tests\sampleProject\src\DemoBundle\Entity
-                alias: TestApiRestBundle
+                alias: TestApiRestBundleDemo
             TestApiRestBundlePattern:
                 is_bundle: false
                 dir: "%kernel.root_dir%/../src/PatternBundle/Entity"
                 type: annotation
                 prefix: EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Entity
-                alias: TestApiRestBundle
+                alias: TestApiRestBundlePattern
 
 # Swiftmailer Configuration
 swiftmailer:

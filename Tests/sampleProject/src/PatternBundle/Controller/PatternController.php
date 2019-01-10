@@ -29,14 +29,12 @@ class PatternController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $encoders = array(new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
 
         $patterns = $em->getRepository(Pattern::class)->findAll();
 
-
-        $response = $serializer->serialize($patterns, 'json');
+        $response = $this
+            ->get('jms_serializer')
+            ->serialize($patterns, 'json');
 
         return new Response($response, 200, ['Content-Type'=>"application/json"]);
     }
@@ -64,11 +62,10 @@ class PatternController extends Controller
         $em->persist($pattern);
         $em->flush();
 
-        $encoders = array( new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
+        $response = $this
+            ->get('jms_serializer')
+            ->serialize($pattern, 'json');
 
-        $response = $serializer->serialize($pattern, 'json');
         return new Response($response, 201, ['Content-Type'=>"application/json"]);
     }
 

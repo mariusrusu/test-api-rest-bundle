@@ -1,9 +1,0 @@
-[
-  {
-    "id": "#id={{@integer@}}",
-    "name" : "posted",
-    "value": 418,
-    "dateOfCreation": "@string@.isDateTime().before(today).after('yesterday')",
-    "active": true
-  }
-]

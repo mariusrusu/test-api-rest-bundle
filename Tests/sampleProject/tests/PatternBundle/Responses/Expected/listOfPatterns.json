@@ -3,14 +3,14 @@
     "id": 1,
     "name" : "@string@",
     "value": "@integer@",
-    "dateOfCreation": "@string@.isDateTime().before(today).after('- 100day')",
+    "date_of_creation": "@string@.isDateTime().before('tomorrow').after('- 100day')",
     "active": "@boolean@"
   },
   {
     "id": 2,
     "name" : "@string@",
     "value": "@integer@",
-    "dateOfCreation": "@string@.isDateTime().before('today').after('- 100day')",
+    "date_of_creation": "@string@.isDateTime().before('tomorrow').after('- 100day')",
     "active": "@boolean@"
   }
 ]
