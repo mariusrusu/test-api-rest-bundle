@@ -31,6 +31,7 @@ composer require --dev everycheck\test-api-rest-bundle
 
 * [Test dynamic responses](Doc/PATTERN_USAGE.md)
 * [Reuse response content](Doc/REUSE_USAGE.md)
+* [Test email sending and their content](Doc/EMAIL_USAGE.md)
 
 
 ##Tests folder structure
