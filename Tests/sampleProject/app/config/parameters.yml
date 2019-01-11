@@ -1,7 +1,0 @@
-# This file is auto-generated during the composer install
-parameters:
-    database_url: 'sqlite:///%kernel.root_dir%/../var/data/db_test/sampleproject.db3'
-    secret: fgedzhifeahshzdeouazdghdcreuzdhcrco
-    mailer_host: null
-    mailer_user: null
-    mailer_password: null

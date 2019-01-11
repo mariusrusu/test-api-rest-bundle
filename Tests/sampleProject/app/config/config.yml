@@ -1,5 +1,6 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: ../../src/EmailBundle/Resources/config/services.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -66,10 +67,7 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: smtp
-    encryption: ssl
-    auth_mode:  login
-    host: '%mailer_host%'
+    transport: '%mailer_transport%'
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool:     { type: memory }

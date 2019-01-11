@@ -8,3 +8,8 @@ test_api_rest_bundle_pattern:
     type:     annotation
     prefix:   /
 
+test_api_rest_bundle_email:
+    resource: "@TestApiRestBundle/Tests/sampleProject/src/EmailBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
