@@ -31,6 +31,6 @@ class ListAllTestFixtureAvailableCommandTest extends KernelTestCase
         );
         $output = $commandTester->getDisplay();
 
-        $this->assertEquals("LoadDemoFixture LoadPatternFixture\n", $output);
+        $this->assertEquals("LoadDemoFixture LoadEmailFixture LoadPatternFixture\n", $output);
     }
 }

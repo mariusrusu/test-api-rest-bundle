@@ -1,0 +1,5 @@
+unit_tests:
+  POST:
+    - { url: "/email", status: 201, in: "sendNoEmail"       , mail: 0}
+    - { url: "/email", status: 201, in: "sendOneEmail"      , mail: 1, pcre_mail: '/Lorem Ipsum/'  }
+    - { url: "/email", status: 201, in: "sendMultipleEmails", mail: 3 }
