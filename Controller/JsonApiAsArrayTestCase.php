@@ -4,12 +4,13 @@ namespace EveryCheck\TestApiRestBundle\Controller;
 use EveryCheck\TestApiRestBundle\Entity\TestDataChunk;
 use EveryCheck\TestApiRestBundle\ControllerTestTrait\DatabaseTestTrait;
 use EveryCheck\TestApiRestBundle\ControllerTestTrait\ApiCallTestTrait;
-
+use EveryCheck\TestApiRestBundle\ControllerTestTrait\EmailTestTrait;
 
 class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
 {
     use DatabaseTestTrait;
     use ApiCallTestTrait;
+    use EmailTestTrait;
 
     const JSON_HEADER = 'application/json';
     const PDF_HEADER  = 'application/pdf';
