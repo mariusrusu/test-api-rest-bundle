@@ -1,20 +1,20 @@
 TestApiRestBundle
 =================
 
-##About
+## About
 
 
 TestApiRestBundle allows you to test your Symfony REST API deeply. It checks the validity of your application and ensures it stays robust throughout time using PHPUnit and via unit, scenario and database testing.
 
-#Table of contents
+# Table of contents
 
-* [About](#markdown-header-about)
-* [Installation](#markdown-header-installation)
-* [Usages](#markdown-header-usages)
-* [Tests folder structure](#markdown-header-tests-folder-structure)
+* [About](#about)
+* [Installation](#installation)
+* [Usages](#usages)
+* [Tests folder structure](#tests-folder-structure)
 
 
-##Installation
+## Installation
 
 
 You can install using composer, assuming it's already installed globally : 
@@ -23,18 +23,18 @@ You can install using composer, assuming it's already installed globally :
 composer require --dev everycheck\test-api-rest-bundle
 ```
 
-##Usages
+## Usages
 
 * [Basic usages](Doc/SIMPLE_USAGE.md)
 
-###Advanced usages
+### Advanced usages
 
 * [Test dynamic responses](Doc/PATTERN_USAGE.md)
 * [Reuse response content](Doc/REUSE_USAGE.md)
 * [Test email sending and their content](Doc/EMAIL_USAGE.md)
 
 
-##Tests folder structure
+## Tests folder structure
 
 To test one of your bundle, you just have to replicate the structure of that one and add some directories by the following structure
 
