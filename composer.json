@@ -7,7 +7,6 @@
         "api",
         "rest"
     ],
-    "homepage": "https://bitbucket.org/everycheck/test-api-rest-bundle",
     "license": "MIT",
     "require": {
         "phpunit/phpunit": "^6.0",
