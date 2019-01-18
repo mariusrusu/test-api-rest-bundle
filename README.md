@@ -1,6 +1,8 @@
 TestApiRestBundle
 =================
 
+[![Build Status](https://travis-ci.com/everycheck/test-api-rest-bundle.svg?branch=master)](https://travis-ci.com/everycheck/test-api-rest-bundle)
+
 ## About
 
 
