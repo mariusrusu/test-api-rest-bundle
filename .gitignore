@@ -1,6 +1,4 @@
 vendor/
 /.idea
 composer.lock
-Tests/sampleProject/App/var/data/db_test/sampleproject\.db3
-Tests/sampleProject/var/data/db_test/
-Tests/sampleProject/app/config/parameters\.yml
+Tests/sampleProject/App/var/data/db_test

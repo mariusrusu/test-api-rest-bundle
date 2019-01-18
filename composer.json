@@ -9,14 +9,14 @@
     ],
     "license": "MIT",
     "require": {
-        "phpunit/phpunit": "^6.0",
+        "phpunit/phpunit": "^6.0|^7.0",
         "symfony/phpunit-bridge": "^3.0",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "jms/serializer-bundle": "^1.1",
         "coduo/php-matcher": "3.2.*@dev"
     },
     "require-dev": {
-        "symfony/symfony": "3.2.*",
+        "symfony/symfony": "3.2.14",
         "symfony/monolog-bundle": "^3.0.2",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",

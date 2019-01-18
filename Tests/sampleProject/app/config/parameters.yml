@@ -1,0 +1,13 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_url:   'sqlite:///%kernel.root_dir%/../var/data/db_test/everycheckdb.db3'
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            vhrufvheufveuvchyi789YHhbuv
+
+
+    mailer_transport: null
+    mailer_user: null
+    mailer_password: null
