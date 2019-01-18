@@ -46,7 +46,7 @@ trait DatabaseTestTrait
         $calledClassFolder = dirname((new \ReflectionClass($calledClass))->getFileName());
 
         $jsonFileComparator = new JsonFileComparator(new Matcher());
-        $jsonFileComparator->setFilePath($calledClassFolder,'..', 'Responses','Expected');
+        $jsonFileComparator->setFilePath($calledClassFolder,'..',$this->responsesDir);
         $jsonFileComparator->setLeftFromString($jsonContent);
         $jsonFileComparator->setRightFromFilename($dataTest->data['out']);
         $jsonFileComparator->setContextForDebug($dataTest->data['out']);

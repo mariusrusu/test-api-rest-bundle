@@ -12,6 +12,7 @@ TestApiRestBundle allows you to test your Symfony REST API deeply. It checks the
 
 * [About](#about)
 * [Installation](#installation)
+* [Configuration](#configuration)
 * [Usages](#usages)
 * [Tests folder structure](#tests-folder-structure)
 
@@ -24,6 +25,24 @@ You can install using composer, assuming it's already installed globally :
 ```
 composer require --dev everycheck\test-api-rest-bundle
 ```
+
+## Configuration
+
+Configure the relative paths of the directories containing the requests payloads that you would send in your tests and their expected responses. The paths are taken from `AcmeBundle\tests\AcmeBundle`.
+
+```yaml
+test_api_rest:
+    directory:
+        payloads: path/to/payloads
+        responses: path/to/responses
+``` 
+
+So, here, the real path of the directories  are : 
+
+`
+AcmeBundle\tests\AcmeBundle\path\to\payloads
+AcmeBundle\tests\AcmeBundle\path\to\responses
+`
 
 ## Usages
 

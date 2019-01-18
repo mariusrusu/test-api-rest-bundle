@@ -55,7 +55,7 @@ trait ApiCallTestTrait
         $calledClass = get_called_class();
         $calledClassFolder = dirname((new \ReflectionClass($calledClass))->getFileName());
 
-        $fullpath = join(DIRECTORY_SEPARATOR,[$calledClassFolder,'..', 'Payloads',$filename . '.' . $ext]);
+        $fullpath = join(DIRECTORY_SEPARATOR,[$calledClassFolder,'..', $this->payloadsDir,$filename . '.' . $ext]);
         $file_content =  file_get_contents($fullpath);
 
         return $this->getReferencedEnvVariableOrValue($file_content);
@@ -101,7 +101,7 @@ trait ApiCallTestTrait
                 try
                 {
 
-                    $jsonFileComparator->setFilePath($calledClassFolder,'..', 'Responses','Expected');
+                    $jsonFileComparator->setFilePath($calledClassFolder,'..', $this->responsesDir);
                     $jsonFileComparator->setLeftFromString($response->getContent());
                     $jsonFileComparator->setRightFromFilename($filename);
                     $jsonFileComparator->setContextForDebug($filename);
@@ -116,7 +116,7 @@ trait ApiCallTestTrait
             }
             else
             {
-                $filepath = join(DIRECTORY_SEPARATOR,[$calledClassFolder,'..', 'Responses','Expected',$filename]);
+                $filepath = join(DIRECTORY_SEPARATOR,[$calledClassFolder,'..', $this->responsesDir,$filename]);
                 $this->assertFileExists($filepath,"Cannot find expected file at : " . $filepath);
                 $fileContent = file_get_contents($filepath);
 

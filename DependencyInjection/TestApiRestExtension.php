@@ -13,5 +13,12 @@ class TestApiRestExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(array(
             __DIR__ . '/../Resources/config/')));
         $loader->load('services.xml');
+
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $config);
+
+        $container->setParameter('test_api_rest.directory.payloads', $config['directory']['payloads']);
+        $container->setParameter('test_api_rest.directory.responses', $config['directory']['responses']);
+
     }
 }
