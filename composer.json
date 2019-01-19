@@ -12,8 +12,8 @@
         "phpunit/phpunit": "^6.0|^7.0",
         "symfony/phpunit-bridge": "^3.0",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
-        "jms/serializer-bundle": "^1.1",
-        "coduo/php-matcher": "3.2.*@dev"
+        "jms/serializer-bundle": "^1.0|^2.0",
+        "coduo/php-matcher": "^3.0"
     },
     "require-dev": {
         "symfony/symfony": "3.2.14",

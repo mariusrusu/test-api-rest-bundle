@@ -4,7 +4,7 @@
     "uuid": "@uuid@",
     "name" : "@string@",
     "value": "@integer@",
-    "date_of_creation": "@string@.isDateTime().before('tomorrow').after('yesterday')",
+    "date_of_creation": "@string@.isDateTime()",
     "active": true
   },
   {
@@ -12,7 +12,7 @@
     "uuid": "@uuid@",
     "name" : "@string@",
     "value": "@integer@",
-    "date_of_creation": "@string@.isDateTime().before('tomorrow').after('yesterday')",
+    "date_of_creation": "@string@.isDateTime()",
     "active": true
   }
 ]
