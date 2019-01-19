@@ -14,6 +14,7 @@ class Configuration implements ConfigurationInterface
 		$rootNode
 			->children()
 				->arrayNode('directory')
+		            ->addDefaultsIfNotSet()
 					->children()
 						->scalarNode('payloads')
 							->isRequired()
@@ -21,7 +22,7 @@ class Configuration implements ConfigurationInterface
 						->end()
 						->scalarNode('responses')
 							->isRequired()
-							->defaultValue('Responses\Expected')
+							->defaultValue('Responses/Expected')
 						->end()
 					->end()
 				->end()
