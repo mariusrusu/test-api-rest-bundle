@@ -15,6 +15,7 @@ TestApiRestBundle allows you to test your Symfony REST API deeply. It checks the
 * [Configuration](#configuration)
 * [Usages](#usages)
 * [Tests folder structure](#tests-folder-structure)
+* [Launching test](#launching-test)
 
 
 ## Installation
@@ -46,13 +47,13 @@ AcmeBundle\tests\AcmeBundle\path\to\responses
 
 ## Usages
 
-* [Basic usages](Doc/SIMPLE_USAGE.md)
+* [Basic usages](Resources/doc/SIMPLE_USAGE.md)
 
 ### Advanced usages
 
-* [Test dynamic responses](Doc/PATTERN_USAGE.md)
-* [Reuse response content](Doc/REUSE_USAGE.md)
-* [Test email sending and their content](Doc/EMAIL_USAGE.md)
+* [Test dynamic responses](Resources/doc/PATTERN_USAGE.md)
+* [Reuse response content](Resources/doc/REUSE_USAGE.md)
+* [Test email sending and their content](Resources/doc/EMAIL_USAGE.md)
 
 
 ## Tests folder structure
@@ -85,3 +86,12 @@ To test one of your bundle, you just have to replicate the structure of that one
     │   └──
     └──
 
+
+## Launching test 
+
+To test the bundle type : 
+
+```
+composer install
+./vendor/bin/phpunit
+```
