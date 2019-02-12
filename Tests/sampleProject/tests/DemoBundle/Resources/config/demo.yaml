@@ -11,6 +11,7 @@ unit_tests:
   POST:
     - { url: "/demo/new", status: 400, in: "postInvalidDemo" }
     - { url: "/demo/new", status: 201, in: "postValidDemo" , out: "postedDemo" }
+    - { url: "/demo/new", status: 201, in: "../path/to/payloads/postValidDemo" , out: "../../path/to/expected/responses/postedDemo" }
 
   DELETE:
     - { url: "/demo/a"  , status: 404 }

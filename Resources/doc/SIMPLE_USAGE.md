@@ -39,7 +39,7 @@ As each tests are independant, the database must be reload at the beginning of t
 
 All you need to have is a `database_url` set in your doctrine configuration.
 
-&#9888;	___Only mysql and sqlite mode are supported by TestApiRestBundle.___
+&#9888; ___Only mysql and sqlite mode are supported by TestApiRestBundle.___
 
 Before launching the tests, you must prepare the database by using `bin/console test:database:prepare fixturesname`. For each fixtures file your application contains, it will apply the following .:
 
@@ -199,9 +199,15 @@ unit_tests:
 
 As you can see, the `in` and `out` keys doesn't contain actual data, but the name of a json file. That's where you write the body of a request or of a response, for readability matters. So let's create them.
 
-First, the in : save it in the `tests\Payloads` folder. Write the actual body content of the request you would send to your endpoint.
-Then, the out : save it in the `tests\Responses\Expected` folder. Write the responses you should get from the precedent request.
 
+The in refers to the actual body content of the request you would send to your endpoint. The out corresponds to the response you should get from that request. By defaut, those files are stored in the `tests\Payloads` and the `tests\Responses\Expected`folder. By editing your `conf.yaml` you can change that default folder. You can also modify it for a particular test : 
+
+```yaml
+unit_tests:
+  POST:
+    - { url: "/demo/new", status: 201, in: "../path/to/payloads/postValidDemo" , out: "../../path/to/expected/responses/postedDemo" }
+
+```
 When this test is processed, TestApiRestBundle checks if those json data match or not.
 
 You can write as many unit tests as you want but keep in mind the structure of the file :
