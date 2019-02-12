@@ -15,6 +15,7 @@ trait EmailTestTrait
         $collectedMessages = $mailCollector->getMessages();
         $message = $collectedMessages[0];
         preg_match($pcre, $message->getBody(),$exctractedValue);
+        $this->assertGreaterThan(0, count($exctractedValue));
         foreach ($exctractedValue as $key => $value) {
             $this->env['pcre'.$key] = $value;
         }

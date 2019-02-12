@@ -18,7 +18,7 @@ class EmailSender
             ->setSubject("Hello world")
             ->setFrom($this->contactEmail)
             ->setTo($this->contactEmail)
-            ->setBody("Lorem ipsum");
+            ->setBody("Lorem Ipsum");
 
         $this->mailer->send($message);
     }
