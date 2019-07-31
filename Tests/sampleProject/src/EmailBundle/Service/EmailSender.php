@@ -14,11 +14,10 @@ class EmailSender
 
     public function sendEmail()
     {
-        $message = \Swift_Message::newInstance()
-            ->setSubject("Hello world")
-            ->setFrom($this->contactEmail)
-            ->setTo($this->contactEmail)
-            ->setBody("Lorem Ipsum");
+        $message = new \Swift_Message("Hello world");
+        $message->setFrom($this->contactEmail)
+                ->setTo($this->contactEmail)
+                ->setBody("Lorem Ipsum");
 
         $this->mailer->send($message);
     }

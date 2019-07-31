@@ -14,7 +14,7 @@ unit_tests:
 
   DELETE:
     - { url: "/pattern/a"  , status: 404 }
-    - { url: "/pattern/03d00000-0000-4000-a000-000000000001"  , status: 204 }
+    - { url: "/pattern/#pattern_1#"  , status: 204 }
 
 scenario:
   creation_then_deletion:

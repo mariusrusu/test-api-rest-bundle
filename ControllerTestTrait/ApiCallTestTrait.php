@@ -6,6 +6,8 @@ use EveryCheck\TestApiRestBundle\Entity\TestDataChunk;
 use EveryCheck\TestApiRestBundle\Matcher\Matcher;
 use EveryCheck\TestApiRestBundle\Service\JsonFileComparator;
 use EveryCheck\TestApiRestBundle\ControllerTestTrait\EmailTestTrait;
+use EveryCheck\TestApiRestBundle\MultipartParser\ParserSelector;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait ApiCallTestTrait
 {
@@ -21,14 +23,18 @@ trait ApiCallTestTrait
 
         $arrayHeaders = $this->explodeHeadersAsArray($data_test['headers']);
         $arrayHeaders['CONTENT_TYPE'] = $data_test['content_type_in'];
-
+        
+        $params = [];
+        $files = [];
+        $fileContent = $this->getPayloadAsString($data_test['in'],$data_test['content_type_in'], $params, $files);        
+      
         $this->client->request(
             $data_test['action'],
             $data_test['url'],
-            [],
-            [],
+            $params,
+            $files,
             $arrayHeaders,
-            $this->getPayloadAsString($data_test['in'],$data_test['content_type_in'])
+            $fileContent
         );
 
         $this->assertResponseCode($this->client->getResponse(), $data_test['status']);
@@ -46,8 +52,9 @@ trait ApiCallTestTrait
     }
 
 
-    protected function getPayloadAsString($filename,$mime_type)
+    protected function getPayloadAsString($filename,$mime_type, array &$params, array &$files)
     {
+
         if ($filename == null) return null;
 
         $ext =  $this->getExtensionFromMimeType($mime_type);
@@ -57,8 +64,44 @@ trait ApiCallTestTrait
 
         $fullpath = join(DIRECTORY_SEPARATOR,[$calledClassFolder,'..', $this->payloadsDir,$filename . '.' . $ext]);
         $file_content =  file_get_contents($fullpath);
+        if(strpos($mime_type, 'multipart/form-data') === 0)
+        {
+            $parserSelector = new ParserSelector();
+            $parser = $parserSelector->getParserForContentType($mime_type);
+            
+            $multipart = $parser->parse($file_content);
 
+            foreach($multipart as $key => $value)
+            {
+                $disposition = $value['headers']['content-disposition'][0];
+                $parameters = explode(";", $disposition);
+                $explodedParam = explode("=", $parameters[1]);
+                $filename = substr($explodedParam[1], 1, strlen($explodedParam[1]) -2);
+
+                if(count($parameters) === 3)
+                {
+                    $files[$filename] = $this->createUploadedFile($value['body']);
+                }
+                else
+                {
+                    $params[$filename] = $value['body'];
+                }
+            }
+            return "";
+        }
         return $this->getReferencedEnvVariableOrValue($file_content);
+    }
+
+    private function createUploadedFile($content)
+    {
+        $this->file = tempnam(sys_get_temp_dir(), 'upl');
+        
+        file_put_contents($this->file, 'This is some random text.');
+        
+        return new UploadedFile(
+            $this->file,
+            'emptyfile.txt'
+        );
     }
 
     protected function getErrorMsg($pageContent,$page_header = '')
@@ -162,6 +205,11 @@ trait ApiCallTestTrait
             'image/jpeg'    => 'jpg',
             'image/pjpeg'   => 'jpg'
         ];
+
+        if(!array_key_exists($mime_type, $extensions))
+        {
+            return 'bin';
+        }
 
         return $extensions[$mime_type];
     }

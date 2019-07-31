@@ -1,28 +1,29 @@
 unit_tests:
   GET:
-    - { url: "/demo"    , status: 200, out: "listOfDemos"}
+    - { url: "/demo"          , status: 200, out: "listOfDemos"}
 
   PATCH:
-    - { url: "/demo/1"  , status: 405}
+    - { url: "/demo/1"        , status: 405}
 
   PUT:
-    - { url: "/demo/1"  , status: 405}
+    - { url: "/demo/1"        , status: 405}
 
   POST:
-    - { url: "/demo/new", status: 400, in: "postInvalidDemo" }
-    - { url: "/demo/new", status: 201, in: "postValidDemo" , out: "postedDemo" }
-    - { url: "/demo/new", status: 201, in: "../path/to/payloads/postValidDemo" , out: "../../path/to/expected/responses/postedDemo" }
+    - { url: "/demo/new"      , status: 400, in: "postInvalidDemo" }
+    - { url: "/demo/new"      , status: 201, in: "postValidDemo"                     , out: "postedDemo" }
+    - { url: "/demo/new"      , status: 201, in: "../path/to/payloads/postValidDemo" , out: "../../path/to/expected/responses/postedDemo" }
+    - { url: "/demo/multipart", status: 201, in: 'validMultipart'                    , out: "postedMultipart", ct_in: "multipart/form-data; boundary=e2d3d04e-9b48-43aa-b3ad-d81cb7832b7b"}
 
   DELETE:
-    - { url: "/demo/a"  , status: 404 }
-    - { url: "/demo/1"  , status: 204 }
+    - { url: "/demo/a"        , status: 404 }
+    - { url: "/demo/#demo_1#" , status: 204 }
 
 scenario:
   creation_then_deletion:
-    - { action: "DELETE", url: "/demo/3", status: 404}
-    - { action: "POST"  , url: "/demo/new"  , status: 201, in: "postValidDemo" , out: "postedDemo"}
-    - { action: "DELETE", url: "/demo/3", status: 204 }
+    - { action: "DELETE", url: "/demo/3"       , status: 404}
+    - { action: "POST"  , url: "/demo/new"     , status: 201, in: "postValidDemo" , out: "postedDemo"}
+    - { action: "DELETE", url: "/demo/#demo_3#", status: 204 }
 
   db_testing:
-    - { action: "POST"  , url: "/demo/new"  , status: 201, in: "postValidDemo" , out: "postedDemo"}
-    - { action: "DB", url: "TestApiRestBundleDemo:Demo?id=3", out: "dbTesting" }
+    - { action: "POST"  , url: "/demo/new"     , status: 201, in: "postValidDemo" , out: "postedDemo"}
+    - { action: "DB"    , url: "TestApiRestBundleDemo:Demo?id=3"                  , out: "dbTesting" }

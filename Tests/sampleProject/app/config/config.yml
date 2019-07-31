@@ -20,7 +20,6 @@ framework:
     #serializer:      { enable_annotations: true }]
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
@@ -71,3 +70,7 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool:     { type: memory }
+
+sensio_framework_extra:
+    router:
+        annotations: false

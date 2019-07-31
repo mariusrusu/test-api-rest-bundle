@@ -6,8 +6,7 @@ use Doctrine\ORM\NoResultException;
 use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Entity\Pattern;
 use EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Form\PatternType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,8 +20,7 @@ class PatternController extends Controller
     /**
      * Lists all pattern entities.
      *
-     * @Route("", name="pattern_index")
-     * @Method("GET")
+     * @Route("", name="pattern_index", methods={"GET"})
      */
     public function indexAction()
     {
@@ -40,8 +38,7 @@ class PatternController extends Controller
     /**
      * Creates a new pattern entity.
      *
-     * @Route("/new", name="pattern_new")
-     * @Method({"POST"})
+     * @Route("/new", name="pattern_new", methods={"POST"})
      */
     public function newAction(Request $request)
     {
@@ -70,10 +67,9 @@ class PatternController extends Controller
     /**
      * Deletes a pattern entity.
      *
-     * @Route("/{uuid}", name="pattern_delete")
-     * @Method("DELETE")
+     * @Route("/{id}", name="pattern_delete", methods={"DELETE"})
      */
-    public function deleteAction(Request $request)
+    public function deleteAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -82,7 +78,7 @@ class PatternController extends Controller
         $query = $qb->select('p')
             ->from(Pattern::class,'p')
             ->where('p.uuid = :uuid')
-            ->setParameter('uuid', $request->get('uuid'))
+            ->setParameter('uuid', $id)
             ->getQuery();
 
         try

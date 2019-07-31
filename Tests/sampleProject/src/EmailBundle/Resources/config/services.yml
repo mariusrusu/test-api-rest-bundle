@@ -2,3 +2,4 @@ services:
   email.send_email:
     class: EveryCheck\TestApiRestBundle\Tests\sampleProject\src\EmailBundle\Service\EmailSender
     arguments: ['@mailer','%mailer_user%']
+    public: true
