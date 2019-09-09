@@ -18,7 +18,7 @@ class Api{
 
 	public function setGuzzleClient(Client $client)
 	{
-		$this->guzzleClient = $guzzleClient;
+		$this->guzzleClient = $client;
 	}
 
 	

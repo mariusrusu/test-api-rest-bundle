@@ -8,5 +8,11 @@
         <service id="pdo_flysystem_service" class="EveryCheck\TestApiRestBundle\Service\PdoFlySystem">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
+        <service class="EveryCheck\TestApiRestBundle\EventSubscriber\ForeignKeyEnabler" id="foreign_key_enabler">
+            <tag name="doctrine.event_subscriber" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument key="$databaseUrl">%database_url%</argument>
+        </service>
+        <service id="EveryCheck\TestApiRestBundle\EventSubscriber\ForeignKeyEnabler" alias="foreign_key_enabler" />
     </services>
 </container>

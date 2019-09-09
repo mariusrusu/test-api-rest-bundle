@@ -1,0 +1,11 @@
+unit_tests:
+  DELETE:
+    - { url: "/parents/#parent_1#", status: 500}
+
+scenario:
+  sqliteTestingHandleForeignKeys:
+    - { action: DELETE, url: "/parents/#parent_1#", status: 500 }
+    - { action: DELETE, url: "/children/#child_3#", status: 204 }
+    - { action: DELETE, url: "/children/#child_4#", status: 204 }
+    - { action: DELETE, url: "/children/#child_5#", status: 204 }
+    - { action: DELETE, url: "/parents/#parent_1#", status: 204 }

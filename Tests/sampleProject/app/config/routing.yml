@@ -13,3 +13,9 @@ test_api_rest_bundle_email:
     type:     annotation
     prefix:   /
 
+
+test_api_rest_bundle_foreign_key:
+    resource: "@TestApiRestBundle/Tests/sampleProject/src/ForeignKeyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

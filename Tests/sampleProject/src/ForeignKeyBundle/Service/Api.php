@@ -1,6 +1,6 @@
 <?php
 
-namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\DemoBundle\Service;
+namespace EveryCheck\TestApiRestBundle\Tests\sampleProject\src\ForeignKeyBundle\Service;
 
 use GuzzleHttp\Client;
 
@@ -20,11 +20,10 @@ class Api{
 	{
 		$this->guzzleClient = $client;
 	}
-
 	
-	public function postDemo(array $demo)
+	public function postData(array $data, string $kind)
 	{
-		$response = $this->guzzleClient->request("POST", "/demo/new", $this->getOption($demo));
+		$response = $this->guzzleClient->request("POST", "/$kind/new", $this->getOption($data));
 
 		if($response->getStatusCode() !== 201)
 		{

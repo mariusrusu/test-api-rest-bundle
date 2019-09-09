@@ -3,6 +3,7 @@
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_url:   'sqlite:///%kernel.root_dir%/../var/data/db_test/everycheckdb.db3'
+    #database_url: 'mysql://root:@127.0.0.1:3306/test-api-rest-bundle'
 
     # A secret key that's used to generate certain security-related tokens
     secret:            vhrufvheufveuvchyi789YHhbuv

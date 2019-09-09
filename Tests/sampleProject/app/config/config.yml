@@ -63,6 +63,12 @@ doctrine:
                 type: annotation
                 prefix: EveryCheck\TestApiRestBundle\Tests\sampleProject\src\PatternBundle\Entity
                 alias: TestApiRestBundlePattern
+            TestApiRestBundleForeignKey:
+                is_bundle: false
+                dir: "%kernel.root_dir%/../src/ForeignKeyBundle/Entity"
+                type: annotation
+                prefix: EveryCheck\TestApiRestBundle\Tests\sampleProject\src\ForeignKeyBundle\Entity
+                alias: TestApiRestBundleForeignKey
 
 # Swiftmailer Configuration
 swiftmailer:
