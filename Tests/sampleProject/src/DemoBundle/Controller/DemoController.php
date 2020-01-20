@@ -106,6 +106,17 @@ class DemoController extends Controller
         return new Response('', 204, ['Content-Type'=>"application/json"]);
     }
 
+	/**
+	 * Returns the cookies send in the request.
+	 *
+	 * @Route("/cookies", name="get_cookies", methods={"GET"})
+	 */
+	public function getCookiesAction(Request $request)
+	{
+		$cookies = $request->cookies->all();
+		return new Response(json_encode($cookies), 200, ['Content-Type'=>"application/json"]);
+	}
+
     private function notFound()
     {
         return new Response("The resource you asked doesn't exist", 404, ['Content-Type'=>"application/json"]);

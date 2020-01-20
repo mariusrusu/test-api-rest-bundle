@@ -12,6 +12,7 @@ matrix:
     - php: 7.2
 
 before_install:
+  - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - composer self-update
 
 install:
@@ -19,4 +20,4 @@ install:
   - composer update
 
 script:
-  - ./vendor/bin/phpunit
+  - ./vendor/bin/phpunit -c .

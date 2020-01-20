@@ -28,10 +28,7 @@ trait DatabaseTestTrait
             $value = $matches[0][3];
 
             $entities = $this->em->getRepository($repository)->findBy([$name=>$value]);
-            foreach ($entities as $entity)
-            {
-                $this->em->detach($entity);
-            }
+			$this->em->clear();
         }
         catch(\Exception $e)
         {

@@ -192,7 +192,7 @@ unit_tests:
 As you can see, the `in` and `out` keys doesn't contain actual data, but the name of a json file. That's where you write the body of a request or of a response, for readability matters. So let's create them.
 
 
-The in refers to the actual body content of the request you would send to your endpoint. The out corresponds to the response you should get from that request. By defaut, those files are stored in the `tests\Payloads` and the `tests\Responses\Expected`folder. By editing your `conf.yaml` you can change that default folder. You can also modify it for a particular test : 
+The `in` refers to the actual body content of the request you would send to your endpoint. The `out` corresponds to the response you should get from that request. By defaut, those files are stored in the `tests\Payloads` and the `tests\Responses\Expected`folder. By editing your `conf.yaml` you can change that default folder. You can also modify it for a particular test : 
 
 ```yaml
 unit_tests:
@@ -223,6 +223,14 @@ unit_tests:
     - { url: "/demo/a"  , status: 404 }
     - { url: "/demo/1"  , status: 204 }
 ```
+
+*In the case you need to send cookies in your test request, use the `header` keyword with the following pattern :*
+
+```yaml
+GET:
+    - { url: "/demo/cookies"  , status: 200, out: "sentCookies", headers: "Cookie : cookiename=cookievalue"}
+```
+
 
 #### Scenario testing
 

@@ -1,6 +1,7 @@
 unit_tests:
   GET:
     - { url: "/demo"          , status: 200, out: "listOfDemos"}
+    - { url: "/demo/cookies"  , status: 200, out: "sentCookies", headers: "Cookie : cookiename=cookievalue"}
 
   PATCH:
     - { url: "/demo/1"        , status: 405}
