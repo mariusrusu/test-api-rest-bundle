@@ -116,6 +116,12 @@ trait ApiCallTestTrait
 			}
 			return "";
 		}
+		switch($mime_type){
+			case 'application/pdf': return $file_content;
+			case 'image/png': return $file_content;
+			case 'image/jpg': return $file_content;
+			case 'image/jpeg': return $file_content;
+		}
 		return $this->getReferencedEnvVariableOrValue($file_content);
 	}
 
