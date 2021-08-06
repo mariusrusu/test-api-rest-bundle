@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\DebugBundle\DebugBundle(),
             new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
             new Symfony\Bundle\WebServerBundle\WebServerBundle(),
-            new Sensio\Bundle\DistributionBundle\SensioDistributionBundle(),
+            // new Sensio\Bundle\DistributionBundle\SensioDistributionBundle(),
             new EveryCheck\TestApiRestBundle\TestApiRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle()
         ];
