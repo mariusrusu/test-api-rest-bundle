@@ -140,7 +140,8 @@ class JsonFileComparator
             {
                 if( $hasDontMatchKey )
                 {   
-                    throw new DontMatchDoesNotWorkWithArray('Cannot define Dont match key on array value :' .$contextKey.'->'.$key);
+                    continue;
+                    // throw new DontMatchDoesNotWorkWithArray('Cannot define Dont match key on array value :' .$contextKey.'->'.$key);
                 }
 
                 if (is_array($b[$key]))
