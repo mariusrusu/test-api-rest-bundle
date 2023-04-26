@@ -41,7 +41,7 @@ class AbstractBaseControllerTestClass extends WebTestCase
         ;
 
         $this->getClientOrCreateOne();
-        $folder  = static::$kernel->getContainer()->getParameter('kernel.root_dir');
+        $folder  = static::$kernel->getContainer()->getParameter('kernel.project_dir');
         $dbPath  = static::$kernel->getContainer()->getParameter('database_url');
 
         if(substr($dbPath,0,8) == 'mysql://')
