@@ -31,7 +31,7 @@ class AbstractBaseControllerTestClass extends WebTestCase
         return $this->application;
     }
 
-    public function setUp($fixtureFilename = null)
+    public function setUp($fixtureFilename = null): void
     {
         static::$kernel = static::createKernel();
         static::$kernel->boot();

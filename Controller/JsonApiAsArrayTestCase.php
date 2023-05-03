@@ -19,7 +19,7 @@ class JsonApiAsArrayTestCase extends AbstractBaseControllerTestClass
     protected  $env = [];
     protected  $current;
 
-    public function onNotSuccessfulTest(\Throwable $t){
+    public function onNotSuccessfulTest(\Throwable $t): void {
         if($this->current instanceof TestDataChunk)
         {
             dump($this->current->data);
