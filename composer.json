@@ -12,8 +12,8 @@
         "coduo/php-matcher": "^4.0",
         "jms/serializer-bundle": "^4.0",
         "myclabs/deep-copy": "^1.10",
-        "phpunit/phpunit": "^6.0|^7.0",
-        "symfony/phpunit-bridge": "^5.0"
+        "phpunit/phpunit": "8.0",
+        "symfony/phpunit-bridge": "6.2"
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^2.0",
